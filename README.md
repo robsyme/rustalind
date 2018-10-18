@@ -2,8 +2,9 @@
 Documenting the process of learning rust by implementing exercises from http://rosalind.info
 
 ## Building
+From the repository root:
 ```sh
-$ cargo build --release
+$ cargo install
 ```
 
 ## Testing
@@ -30,7 +31,7 @@ test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 Each exercise is implemented as its own subcommand. 
 
 ```sh
-$ target/release/rustalind dna --help
+$ rustalind dna --help
 ```
 
 ```
@@ -51,7 +52,7 @@ ARGS:
 I've also included the example data for each successfully completed exercise in the `test-data` folder. To run the first problem (DNA nucleotide counting):
 
 ```sh
-$ target/release/rustalind dna test-data/dna/dna.txt
+$ rustalind dna test-data/dna/dna.txt
 20 12 17 21
 ```
 

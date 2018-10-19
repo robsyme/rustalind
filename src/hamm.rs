@@ -30,10 +30,11 @@ impl<T: Iterator> Iterator for Pairer<T> {
 }
 
 pub fn hamming_distance(str1: &str, str2: &str) -> usize {
-    str1.chars()
-        .zip(str2.chars())
-        .filter(|a| a.0 != a.1)
-        .count()
+    let mut dist = 0;
+    for (a, b) in str1.chars().zip(str2.chars()) {
+        if a != b {dist += 1}
+    }
+    dist
 }
 
 pub fn run(arguments: &clap::ArgMatches) {

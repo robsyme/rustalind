@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::collections::HashMap;
 
-fn count_occurences(input: &str) -> HashMap<char, u32> {
+fn count_occurrences(input: &str) -> HashMap<char, u32> {
     let mut frequency: HashMap<char, u32> = HashMap::new();
     for char in input.chars() {
         *frequency.entry(char).or_insert(0) += 1;
@@ -11,7 +11,7 @@ fn count_occurences(input: &str) -> HashMap<char, u32> {
 }
 
 fn fmt_nucleotide_occurences(input: &str, bases: &[char]) -> String {
-    let freq = count_occurences(input);
+    let freq = count_occurrences(input);
     bases.iter()
         .map(|base| freq.get(base).unwrap_or(&0u32))
         .map(|i| i.to_string())
@@ -47,6 +47,6 @@ mod tests {
         expected.insert('G', 17);
         expected.insert('T', 21);
 
-        assert_eq!(count_occurences(&input), expected);
+        assert_eq!(count_occurrences(&input), expected);
     }
 }

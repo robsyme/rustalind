@@ -40,6 +40,13 @@ impl Record {
 }
 
 /// A FASTA reader.
+///
+/// # Examples
+///
+/// ```
+///
+/// ```
+///
 pub struct FastaReader<R: io::Read> {
     reader: io::BufReader<R>,
     line: String,
@@ -106,7 +113,8 @@ impl<T: io::Read> Iterator for FastaReader<T> {
         match self.read(&mut record) {
             // If the read failed, return the error.
             Err(err) => Some(Err(err)),
-            // If no data was written to record, we've reached EOF and can stop the iteration by returning None.
+            // If no data was written to record,
+            // we've reached EOF and can stop the iteration by returning None.
             Ok(()) if record.is_empty() => None,
             // Otherwise, return the record
             Ok(()) => Some(Ok(record)),

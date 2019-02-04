@@ -10,7 +10,7 @@ fn count_occurrences(input: &str) -> HashMap<char, u32> {
     frequency
 }
 
-fn fmt_nucleotide_occurences(input: &str, bases: &[char]) -> String {
+fn fmt_nucleotide_occurrences(input: &str, bases: &[char]) -> String {
     let freq = count_occurrences(input);
     bases.iter()
         .map(|base| freq.get(base).unwrap_or(&0u32))
@@ -27,7 +27,7 @@ pub fn run(arguments: &clap::ArgMatches) {
     let mut f = File::open(filename).expect("Could not read file");
     let mut buffer = String::new();
     f.read_to_string(&mut buffer).expect("Could not read into buffer");
-    let output = fmt_nucleotide_occurences(&buffer, &['A', 'C', 'G', 'T']);
+    let output = fmt_nucleotide_occurrences(&buffer, &['A', 'C', 'G', 'T']);
 
     println!("{}", output);
 }
@@ -38,7 +38,7 @@ mod tests {
     use super::*;
     
     #[test]
-    fn count_basic_occurences() {
+    fn count_basic_occurrences() {
         let input = String::from("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC");
 
         let mut expected = HashMap::new();

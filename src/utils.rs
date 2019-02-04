@@ -80,7 +80,7 @@ impl<R: io::Read> FastaReader<R> {
         }
 
         record.id = self.line[1..]
-            .trim_right()
+            .trim_end()
             .splitn(2, ' ')
             .nth(0)
             .map(|s| s.to_owned())
@@ -92,7 +92,7 @@ impl<R: io::Read> FastaReader<R> {
             if self.line.is_empty() || self.line.starts_with('>') {
                 break;
             }
-            record.seq.push_str(self.line.trim_right());
+            record.seq.push_str(self.line.trim_end());
         }
 
         Ok(())

@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate clap;
 
-mod utils;
 mod dna;
 mod rna;
 mod revc;

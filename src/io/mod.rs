@@ -40,13 +40,6 @@ impl Record {
 }
 
 /// A FASTA reader.
-///
-/// # Examples
-///
-/// ```
-///
-/// ```
-///
 pub struct FastaReader<R: io::Read> {
     reader: io::BufReader<R>,
     line: String,
@@ -80,7 +73,7 @@ impl<R: io::Read> FastaReader<R> {
                     break;
                 } else if self.line.is_empty() {
                     return Err(io::Error::new(io::ErrorKind::InvalidInput,
-                    "Could not find a valid fasta entry in the file"))
+                                              "Could not find a valid fasta entry in the file"))
                 }
             }
             return Err(io::Error::new(io::ErrorKind::Other, "Expected '>' at record start"));

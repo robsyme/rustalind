@@ -1,5 +1,4 @@
 use std::ops::{BitAnd, BitOr, BitXor};
-use std::convert::TryFrom;
 
 ///
 /// We can probably encode everything in four bits like so:

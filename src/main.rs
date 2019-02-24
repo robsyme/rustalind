@@ -1,3 +1,5 @@
+#![feature(try_from)]
+
 #[macro_use]
 extern crate clap;
 
@@ -8,6 +10,7 @@ mod gc;
 mod fib;
 mod hamm;
 mod iprb;
+mod prot;
 
 fn file_exists(path: String) -> Result<(), String> {
     std::fs::metadata(path)
@@ -57,6 +60,10 @@ fn main() {
             (@arg dominant: -k <int> +required {is_valid_integer} "Number of homozygous dominant individuals")
             (@arg heterozygous: -m <int> +required {is_valid_integer} "Number of heterozygous individuals")
             (@arg recessive: -n <int> +required {is_valid_integer} "Number of homozygous recessive individuals"))
+        (@subcommand prot =>
+            (about: "Translate RNA into protein")
+            (version: "0.0.1")
+            (@arg INPUT: +required {file_exists} "Input file to read"))
         );
 
     match app.get_matches().subcommand() {
@@ -67,6 +74,7 @@ fn main() {
         ("gc", Some(args)) => gc::run(args),
         ("hamm", Some(args)) => hamm::run(args),
         ("iprb", Some(args)) => iprb::run(args),
+        ("prot", Some(args)) => prot::run(args),
         _ => {},
     }
 }

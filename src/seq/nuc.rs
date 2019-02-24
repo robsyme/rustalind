@@ -1,4 +1,5 @@
 use std::ops::{BitAnd, BitOr, BitXor};
+use std::convert::TryFrom;
 
 ///
 /// We can probably encode everything in four bits like so:
@@ -95,6 +96,22 @@ impl From<char> for DNA {
     }
 }
 
+impl From<&char> for DNA {
+    fn from(c: &char) -> Self {
+        match c  {
+            'a' => DNA::A,
+            'A' => DNA::A,
+            'c' => DNA::C,
+            'C' => DNA::C,
+            'g' => DNA::G,
+            'G' => DNA::G,
+            't' => DNA::T,
+            'T' => DNA::T,
+            _ => DNA::N,
+        }
+    }
+}
+
 impl BitAnd for DNA {
     type Output = Self;
 
@@ -129,6 +146,9 @@ impl DNA {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use seq::codon::Codon;
+    use seq::translation::ncbi_translation_tables::STANDARD;
+    use seq::translation::TranslatedCodon;
 
     #[test]
     fn dna_as_tagged_enums() {
@@ -202,4 +222,33 @@ mod tests {
         assert_eq!(DNA::K.complement(), DNA::M);
     }
 
+    #[test]
+    fn dna_from_string() {
+        let input = String::from("ATGGCCATGGCGCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA");
+        let collection: Vec<char> = input.chars().collect();
+        let aa_seq = collection[..]
+            .chunks_exact(3)
+            .map(|c| Codon::try_from(c))
+            .filter_map(Result::ok)
+            .map(|codon| codon.translate(&STANDARD))
+            .collect::<Vec<TranslatedCodon>>();
+        assert_eq!(aa_seq, vec![
+            TranslatedCodon::M,
+            TranslatedCodon::A,
+            TranslatedCodon::M,
+            TranslatedCodon::A,
+            TranslatedCodon::P,
+            TranslatedCodon::R,
+            TranslatedCodon::T,
+            TranslatedCodon::E,
+            TranslatedCodon::I,
+            TranslatedCodon::N,
+            TranslatedCodon::S,
+            TranslatedCodon::T,
+            TranslatedCodon::R,
+            TranslatedCodon::I,
+            TranslatedCodon::N,
+            TranslatedCodon::G,
+            TranslatedCodon::Stop]);
+    }
 }

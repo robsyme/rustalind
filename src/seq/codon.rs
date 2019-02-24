@@ -1,6 +1,7 @@
 //use seq::translation::{TranslationTable, TranslatedCodon};
 use super::nuc::DNA;
 use seq::translation::{TranslationTable, TranslatedCodon};
+use std::convert::TryFrom;
 
 #[derive(Debug, PartialEq)]
 pub struct Codon(DNA, DNA, DNA);
@@ -80,6 +81,17 @@ impl Codon {
         match self.get_translation_index() {
             Some(idx) => table.get(idx),
             None => TranslatedCodon::X,
+        }
+    }
+}
+
+impl TryFrom<&[char]> for Codon {
+    type Error = ();
+
+    fn try_from(value: &[char]) -> Result<Self, Self::Error> {
+        match value {
+            [a, b, c] => Ok(Codon(DNA::from(a), DNA::from(b), DNA::from(c))),
+            _ => Err(()),
         }
     }
 }

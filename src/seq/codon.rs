@@ -107,5 +107,7 @@ mod tests {
     fn test_table_integration() {
         let methionine = Codon(A,T,G).translate(&STANDARD);
         assert_eq!(methionine, TranslatedCodon::M);
+        let proline = Codon(C, C, C).translate(&STANDARD);
+        assert_eq!(proline, TranslatedCodon::P);
     }
 }

@@ -1,4 +1,5 @@
 use std::ops::{BitAnd, BitOr, BitXor};
+use std::convert::TryFrom;
 
 ///
 /// We can probably encode everything in four bits like so:
@@ -224,13 +225,14 @@ mod tests {
     #[test]
     fn dna_from_string() {
         let input = String::from("ATGGCCATGGCGCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA");
-        let collection: Vec<char> = input.chars().collect();
-        let aa_seq = collection[..]
+        let aa_seq: Vec<TranslatedCodon> = input
+            .chars()
+            .collect::<Vec<char>>()[..]
             .chunks_exact(3)
-            .map(|c| Codon::try_from(c))
+            .map(Codon::try_from)
             .filter_map(Result::ok)
             .map(|codon| codon.translate(&STANDARD))
-            .collect::<Vec<TranslatedCodon>>();
+            .collect();
         assert_eq!(aa_seq, vec![
             TranslatedCodon::M,
             TranslatedCodon::A,

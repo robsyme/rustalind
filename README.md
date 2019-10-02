@@ -7,26 +7,6 @@ From the repository root:
 $ cargo install
 ```
 
-## Testing
-```
-$ cargo test
-   Compiling rustalind v0.1.0 (/home/robsyme/src/github.com/robsyme/rustalind)
-    Finished dev [unoptimized + debuginfo] target(s) in 1.27s
-     Running target/debug/deps/rustalind-e3431cf8a1d7236e
-
-running 8 tests
-test fib::tests::test_basic_recurrence ... ok
-test hamm::tests::basic_distance ... ok
-test revc::tests::test_reverse_complement ... ok
-test dna::tests::count_basic_occurences ... ok
-test rna::tests::test_translation ... ok
-test utils::tests::blank_fasta ... ok
-test utils::tests::erroneous_fasta ... ok
-test utils::tests::test_gc_counting ... ok
-
-test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-```
-
 ## Running
 Each exercise is implemented as its own subcommand. 
 
@@ -54,6 +34,26 @@ I've also included the example data for each successfully completed exercise in 
 ```sh
 $ rustalind dna test-data/dna/dna.txt
 20 12 17 21
+```
+
+## Testing
+```
+$ cargo test
+   Compiling rustalind v0.1.0 (/home/robsyme/src/github.com/robsyme/rustalind)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.27s
+     Running target/debug/deps/rustalind-e3431cf8a1d7236e
+
+running 8 tests
+test fib::tests::test_basic_recurrence ... ok
+test hamm::tests::basic_distance ... ok
+test revc::tests::test_reverse_complement ... ok
+test dna::tests::count_basic_occurences ... ok
+test rna::tests::test_translation ... ok
+test utils::tests::blank_fasta ... ok
+test utils::tests::erroneous_fasta ... ok
+test utils::tests::test_gc_counting ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
 ## Caveat emptor

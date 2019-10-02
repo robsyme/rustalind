@@ -32,7 +32,8 @@ pub fn run(arguments: &clap::ArgMatches) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
+    //noinspection ALL
     #[test]
     fn test_reverse_complement() {
         let input = String::from("AAAACCCGGT");

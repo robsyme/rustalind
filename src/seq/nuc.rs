@@ -98,17 +98,7 @@ impl From<char> for DNA {
 
 impl From<&char> for DNA {
     fn from(c: &char) -> Self {
-        match c  {
-            'a' => DNA::A,
-            'A' => DNA::A,
-            'c' => DNA::C,
-            'C' => DNA::C,
-            'g' => DNA::G,
-            'G' => DNA::G,
-            't' => DNA::T,
-            'T' => DNA::T,
-            _ => DNA::N,
-        }
+        Self::from(*c)
     }
 }
 
@@ -222,6 +212,7 @@ mod tests {
         assert_eq!(DNA::K.complement(), DNA::M);
     }
 
+    //noinspection ALL
     #[test]
     fn dna_from_string() {
         let input = String::from("ATGGCCATGGCGCCCAGAACTGAGATCAATAGTACCCGTATTAACGGGTGA");

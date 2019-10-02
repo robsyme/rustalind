@@ -31,6 +31,7 @@ pub fn run(arguments: &clap::ArgMatches) {
 mod tests {
     use super::*;
 
+    //noinspection ALL
     #[test]
     fn test_translation() {
         let input = "GATGGAACTTGACTACGTAAATT";

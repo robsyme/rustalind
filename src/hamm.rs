@@ -57,6 +57,7 @@ pub fn run(arguments: &clap::ArgMatches) {
 mod tests {
     use super::*;
 
+    //noinspection ALL
     #[test]
     fn basic_distance() {
         let str1 = "GAGCCTACTAACGGGAT";

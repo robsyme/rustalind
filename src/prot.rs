@@ -46,7 +46,8 @@ pub fn run(arguments: &clap::ArgMatches) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
+    //noinspection ALL
     #[test]
     fn test_translate() {
         let test_input = String::from("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA");

@@ -30,7 +30,7 @@ pub fn run(arguments: &clap::ArgMatches) {
         .expect("Could not parse g argument to integer");
 
     let k = arguments
-        .value_of("fecundidty")
+        .value_of("fecundity")
         .expect("Could not find the 'f' argument")
         .parse::<usize>()
         .expect("Could not parse f argument to integer");

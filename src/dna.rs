@@ -36,7 +36,8 @@ pub fn run(arguments: &clap::ArgMatches) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
+    //noinspection ALL
     #[test]
     fn count_basic_occurrences() {
         let input = String::from("AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC");

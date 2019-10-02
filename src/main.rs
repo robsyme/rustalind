@@ -1,5 +1,3 @@
-#![feature(try_from)]
-
 #[macro_use]
 extern crate clap;
 
@@ -30,7 +28,7 @@ fn main() {
         (author: "Rob Syme <rob.syme@gmail.com>")
         (about: "Learning Rust by implementing solutions to Rosalind problems.")
         (@subcommand dna =>
-            (about: "Count nucleotide occurence")
+            (about: "Count nucleotide occurrence")
             (version: "0.0.1")
             (@arg INPUT: +required {file_exists} "Input file to read"))
         (@subcommand rna =>
@@ -38,7 +36,7 @@ fn main() {
             (version: "0.0.1")
             (@arg INPUT: +required {file_exists} "Input file to read"))
         (@subcommand revc =>
-            (about: "Count nucleotide occurence")
+            (about: "Count nucleotide occurrence")
             (version: "0.0.1")
             (@arg INPUT: +required {file_exists} "Input file to read"))
         (@subcommand fib =>
